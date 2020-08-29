@@ -17,7 +17,9 @@
                     <div class="form-group form-check">
                         <input type="checkbox" name="sintomas[]" value="{{ $s->id }}" class="form-check-input" id="{{ $e->id }}_{{ $s->id }}"  {{ $e->tieneSintoma($e->id,$s->id)?'checked':'' }}>
                         <label class="form-check-label" for="{{ $e->id }}_{{ $s->id }}">
-                            {{ $s->nombre }}
+                            {{ $s->nombre }} <small>
+                            <span class="badge badge-pill badge-{{ $s->tipo=='doctor'?'primary':'info' }}">{{ $s->tipo }}</span></small>
+
                         </label>
                     </div>
                     @endforeach

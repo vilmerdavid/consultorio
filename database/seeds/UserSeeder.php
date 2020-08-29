@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             $role = Role::create(['name' => 'Doctor']);
         }
         
-        $email='mary@gmail.com';
+        $email='consulmed@andinanet.net';
 
         $user=User::where('email',$email)->first();
 
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
 
             $user->name = $email;
             $user->email = $email;
-            $user->password = Hash::make($email);
+            $user->password = Hash::make('consulmed');
             $user->save();
         }
 
@@ -48,13 +48,10 @@ class UserSeeder extends Seeder
         }
 
 
-        $sintomas = array(
-            'Amígdalas rojas e inflamadas',
-            'Parches o recubrimientos blancos o amarillos en las amígdalas',
+        $sintomasPaciente = array(
             'Dolor de garganta',
             'Dificultad o dolor al tragar',
             'Fiebre',
-            'Glándulas sensibles y dilatadas (ganglios linfáticos) en el cuello',
             'Una voz rasposa, apagada o ronca',
             'Mal aliento',
             'Dolor estomacal, en especial en los niños pequeños',
@@ -64,36 +61,53 @@ class UserSeeder extends Seeder
             'Producción de mucosidad (esputo), que puede ser transparente, blanca, de color gris amarillento o verde rara vez, puede presentar manchas de sangre',
             'Fatiga',
             'Dificultad para respirar',
-            'Fiebre ligera y escalofríos',
+            'Escalofríos',
             'Molestia en el pecho',
             'Dolor en el pecho al respirar o toser',
             'Desorientación o cambios de percepción mental (en adultos de 65 años o más).',
-            'Tos que puede producir flema',
-            'Fiebre, transpiración y escalofríos con temblor',
-            'Temperatura corporal más baja de lo normal (en adultos mayores de 65 años y personas con un sistema inmunitario débil)',
-            'Náuseas, vómitos o diarrea',    
-            'Toser',
-            'Congestión',
-            'Dolores corporales o dolor de cabeza leves',
+            'Náuseas',
+            'Vómitos',
+            'Diarrea',
+            'Dolores corporales',
             'Estornudos',
-            'Fiebre baja',
-            'En general, no sentirse bien (malestar general)',
+            'Malestar general',
             'Enrojecimiento de la faringe',
             'Ganglios cervicales inflamados.',
-            'Fiebre mayor que 100 °F (38 °C), aunque no todas las personas con gripe tienen fiebre',
-            'Tos o dolor de garganta',
-            'Goteo o congestión nasal',
-            'Dolores musculares',
-            'Escalofríos',
-            'Náuseas, vómitos o diarrea (más común en los niños)',
+            'Dolor de garganta',
+            'Goteo',
+            'Congestión nasal'
         );
 
-        foreach ($sintomas as $sin) {
-            $s=Sintoma::where('nombre',$sin)->first();
+        foreach ($sintomasPaciente as $sin) {
+            $s=Sintoma::where(['nombre'=>$sin,'tipo'=>'paciente'])->first();
             if(!$s){
                 $s=new Sintoma();
                 $s->nombre=$sin;
+                $s->tipo='paciente';
                 $s->save();
+            }
+        }
+
+
+        $sintomasDoctor = array(
+            'Amígdalas rojas e inflamadas',
+            'Parches o recubrimientos blancos o amarillos en las amígdalas',
+            'Glándulas sensibles y dilatadas (ganglios linfáticos) en el cuello',
+            'Dolor en el pecho al respirar o toser',
+            'Congestión nasal',
+            'Enrojecimiento de la faringe',
+            'Ganglios cervicales inflamados.',
+            'Taquicardía',
+            'Ruidos anormales en pulmones',
+            
+        );
+        foreach ($sintomasDoctor as $sinD) {
+            $s_d=Sintoma::where(['nombre'=>$sinD,'tipo'=>'doctor'])->first();
+            if(!$s_d){
+                $s_d=new Sintoma();
+                $s_d->nombre=$sinD;
+                $s_d->tipo='doctor';
+                $s_d->save();
             }
         }
         

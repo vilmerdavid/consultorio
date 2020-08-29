@@ -17,6 +17,7 @@ class CreateSintomasTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nombre')->nullable();
+            $table->string('tipo')->nullable();
 
         });
     }

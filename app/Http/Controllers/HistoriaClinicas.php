@@ -82,7 +82,6 @@ class HistoriaClinicas extends Controller
                     $d=new Diagnostico();
                     $d->historiaclinica_id=$hc->id;
                     $d->sintoma_id=$s;
-                    $d->resultado=$request->resultado[$s];
                     $d->save();
                 }
             }
@@ -161,15 +160,15 @@ class HistoriaClinicas extends Controller
             $hc->diagnosticos_m()->sync($request->sintomas);
 
 
-            if($request->sintomas){
-                foreach ($request->sintomas as $s) {
-                    $d=Diagnostico::where(['sintoma_id'=>$s,'historiaclinica_id'=>$hc->id])->first();
-                    if($d){
-                        $d->resultado=$request->resultado[$s];
-                        $d->save();
-                    }
-                }
-            }
+            // if($request->sintomas){
+            //     foreach ($request->sintomas as $s) {
+            //         $d=Diagnostico::where(['sintoma_id'=>$s,'historiaclinica_id'=>$hc->id])->first();
+            //         if($d){
+            //             $d->resultado=$request->resultado[$s];
+            //             $d->save();
+            //         }
+            //     }
+            // }
 
             DB::commit();
             
@@ -187,7 +186,20 @@ class HistoriaClinicas extends Controller
     public function hcPdf($idHc)
     {
         $hc=Historiaclinica::find($idHc);
-        $data = array('hc' => $hc );
+
+        
+
+        $ids_sintomas = $hc->diagnosticos_m->pluck('pivot.sintoma_id');
+        $sintomas=Enfermedadsintoma::whereIn('sintoma_id',$ids_sintomas)->select('enfermedad_id', DB::raw('count(*) as total'))
+        ->groupBy('enfermedad_id')
+        ->first();
+        
+        $e='';
+        if($sintomas){
+            $e=Enfermedad::find($sintomas->enfermedad_id)->nombre;
+        }
+
+        $data = array('hc' => $hc,'enfermedad'=>$e );
         $pdf = PDF::loadView('hc.pdf', $data)
         ->setOption('header-html', view('hc.header'))
         ->setOption('footer-html', view('hc.footer'))

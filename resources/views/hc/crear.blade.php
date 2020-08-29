@@ -76,69 +76,98 @@
                 <textarea class="form-control" id="af" name="antecedentes_familiares" rows="3"></textarea>
             </div>
 
+            <div class="form-group">
+                <label for="fr">Alergias</label>
+                <input type="text" name="frecuencia_respiratoria" id="fr" class="form-control" placeholder="">
+            </div>
 
             <label for="">SIGNOS VITALES</label>
             <div class="row">
                 
                 <div class="col">
-                    <label for="pa">Presión arterial</label>
-                    <input type="text" id="pa" name="presion_arterial" class="form-control" placeholder="">
-                </div>
-                <div class="col">
-                    <label for="pc">Presión cardiaca</label>
-                    <input type="text" id="pc" name="presion_cardiaca" class="form-control" placeholder="">
-                </div>
-                <div class="col">
-                    <label for="fr">Frecuencia respiratoria</label>
-                    <input type="text" name="frecuencia_respiratoria" id="fr" class="form-control" placeholder="">
-                </div>
-                <div class="col">
-                    <label for="tem">Temperatura</label>
-                    <input type="text" name="temperatura" id="tem" class="form-control" placeholder="">
-                </div>
-                <div class="col">
-                    <label for="peso">Peso</label>
+                    <label for="peso">Peso kg</label>
                     <input type="text" name="peso" id="peso" class="form-control" placeholder="">
                 </div>
                 <div class="talla">
-                    <label for="talla">Talla</label>
+                    <label for="talla">Talla Cm<sup>2</sup></label>
                     <input type="text" name="talla" id="talla" class="form-control" placeholder="">
                 </div>
+                <div class="col">
+                    <label for="tem">Temperatura °C</label>
+                    <input type="text" name="temperatura" id="tem" class="form-control" placeholder="">
+                </div>
+
+                <div class="col">
+                    <label for="pc">Pulso X<sup>m</sup> </label>
+                    <input type="text" id="pc" name="presion_cardiaca" class="form-control" placeholder="">
+                </div>
+
+                <div class="col">
+                    <label for="pa">Presión arterial T/A</label>
+                    <input type="text" id="pa" name="presion_arterial" class="form-control" placeholder="">
+                </div>
+                
+                
             </div>
 
             <hr>
             
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Sintomas</th>
-                            <th>Diagnotico</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @foreach ($sintomas as $s)
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <input type="checkbox" name="sintomas[{{ $s->id }}]" value="{{ $s->id }}" onchange="calcularEngermedad(this);"  class="form-check-input sintomas_lista" id="s_{{ $s->id }}">
-                                    <label class="form-check-label" for="s_{{ $s->id }}">
-                                        {{ $s->nombre }}
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <input type="text" name="diagnosticos[{{ $s->id }}]">
-                            </td>
-                        </tr>
-                            
-                            @endforeach            
-                    </tbody>
-
-                </table>
-                
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Sintomas del paciente</th>
+                                </tr>
+                            </thead>
+        
+                            <tbody>
+                                @foreach ($sintomas->where('tipo','paciente') as $s)
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input type="checkbox" name="sintomas[{{ $s->id }}]" value="{{ $s->id }}" onchange="calcularEngermedad(this);"  class="form-check-input sintomas_lista" id="s_{{ $s->id }}">
+                                            <label class="form-check-label" for="s_{{ $s->id }}">
+                                                {{ $s->nombre }}
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                    @endforeach            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Sintomas del doctor</th>
+                                </tr>
+                            </thead>
+        
+                            <tbody>
+                                @foreach ($sintomas->where('tipo','doctor') as $s_d)
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input type="checkbox" name="sintomas[{{ $s_d->id }}]" value="{{ $s_d->id }}" onchange="calcularEngermedad(this);"  class="form-check-input sintomas_lista" id="s_{{ $s_d->id }}">
+                                            <label class="form-check-label" for="s_{{ $s_d->id }}">
+                                                {{ $s_d->nombre }}
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                    @endforeach            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
+            
+
 
             <div class="table-responsive">
                 <table class="table table-responsive">

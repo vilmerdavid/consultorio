@@ -37,6 +37,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/h-c-pdf/{id}', 'HistoriaClinicas@hcPdf')->name('hcPdf');
 
 
+    // pacientes
+    Route::get('/pacientes', 'Usuarios@index')->name('pacientes');
+    Route::get('/pacientes-editar/{id}', 'Usuarios@editar')->name('editarUser');
+    Route::post('/pacientes-actualizar', 'Usuarios@actualizar')->name('actualizarUser');
+
 });
 
 

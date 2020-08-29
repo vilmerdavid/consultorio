@@ -33,6 +33,12 @@
     <span>Crear historia clínica</span></a>
 </li>
 
+<li class="nav-item" id="menu_pacientes">
+  <a class="nav-link" href="{{ route('pacientes') }}">
+    <i class="fas fa-users"></i>
+    <span>Pacientes</span></a>
+</li>
+
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
 <!-- Sidebar Toggler (Sidebar) -->
