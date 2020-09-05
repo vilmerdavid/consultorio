@@ -203,6 +203,7 @@ class HistoriaClinicas extends Controller
         $pdf = PDF::loadView('hc.pdf', $data)
         ->setOption('header-html', view('hc.header'))
         ->setOption('footer-html', view('hc.footer'))
+        ->setOption('margin-top', 45)
         ->setOption('margin-bottom', 15);
         return $pdf->inline('hc.pdf');
     }
