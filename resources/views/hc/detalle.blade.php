@@ -78,7 +78,7 @@
             </div>
             
             <div class="form-group">
-                <label for="fr">Alergias</label>
+                <label for="fr">Alergias </label>
                 <input type="text" name="frecuencia_respiratoria" value="{{ $hc->frecuencia_respiratoria }}" id="fr" class="form-control" placeholder="">
             </div>
 
