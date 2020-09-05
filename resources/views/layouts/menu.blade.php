@@ -1,19 +1,7 @@
-<!-- Divider -->
-<hr class="sidebar-divider">
-
-<!-- Heading -->
-<div class="sidebar-heading">
-  Navegación
-</div>
 
 
 
-<!-- Nav Item - Charts -->
-<li class="nav-item" id="mene_inicio">
-  <a class="nav-link " href="{{ url('/') }}">
-    <i class="fas fa-fw fa-chart-area"></i>
-    <span>Inicio</span></a>
-</li>
+
 
 <!-- Nav Item - Tables -->
 <li class="nav-item" id="menu_sintomas">
@@ -37,6 +25,12 @@
   <a class="nav-link" href="{{ route('pacientes') }}">
     <i class="fas fa-users"></i>
     <span>Pacientes</span></a>
+</li>
+
+<li class="nav-item" id="menu_turno">
+  <a class="nav-link" href="{{ route('turnos') }}">
+    <i class="fas fa-users"></i>
+    <span>Reserva de turno</span></a>
 </li>
 
 <!-- Divider -->

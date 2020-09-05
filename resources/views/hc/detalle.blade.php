@@ -101,7 +101,7 @@
                 </div>
 
                 <div class="col">
-                    <label for="pc">Pulso X<sup>m</sup> </label>
+                    <label for="pc">Pulso X<sup>*</sup> </label>
                     <input type="text" id="pc" name="presion_cardiaca" value="{{ $hc->presion_cardiaca??'' }}" class="form-control" placeholder="">
                 </div>
 
@@ -154,7 +154,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Sintomas del doctor</th>
+                                    <th>Examen físico</th>
                                 </tr>
                             </thead>
         

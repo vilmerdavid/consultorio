@@ -12,18 +12,23 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/', function () {
+    return view('/welcome');
+});
+Route::post('/guardar-turnos', 'Turnos@guardarTurno')->name('guardarTurno');
 
 Auth::routes(['register'=>false]);
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', function () {
-        return redirect()->route('home');
-    });
+    
     
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/sintomas', 'Sintomas@index')->name('sintomas');
+    Route::get('/eliminar-enfermedad/{id}', 'Sintomas@eliminarEnfermedad')->name('eliminarEnfermedad');
+    Route::post('/guardar-sintoma', 'Sintomas@guardarSitoma')->name('guardarSitoma');
+    Route::get('/eliminar-sintoma/{id}', 'Sintomas@eliminarSintoma')->name('eliminarSintoma');
+
     Route::post('/sintomas-actualizar', 'Sintomas@actualizar')->name('actualizarSintoma');
     Route::get('/crear-hc', 'HistoriaClinicas@crear')->name('crearhc');
     Route::get('/hc', 'HistoriaClinicas@index')->name('hc');
@@ -41,6 +46,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pacientes', 'Usuarios@index')->name('pacientes');
     Route::get('/pacientes-editar/{id}', 'Usuarios@editar')->name('editarUser');
     Route::post('/pacientes-actualizar', 'Usuarios@actualizar')->name('actualizarUser');
+
+    // turnos
+    Route::get('/turnos', 'Turnos@index')->name('turnos');
+    Route::get('/cambiar-estado-turno/{id}', 'Turnos@estado')->name('cambiarturnos');
 
 });
 

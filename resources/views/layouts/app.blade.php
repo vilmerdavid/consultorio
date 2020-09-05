@@ -52,9 +52,27 @@
         @endauth
       </a>
 
-      
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Navegación
+      </div>
       @auth
+      <li class="nav-item" id="mene_inicio">
+        <a class="nav-link " href="{{ route('home') }}">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Inicio</span></a>
+      </li>
       @include('layouts.menu')
+      @else
+      
+
+      <li class="nav-item" id="mene_inicio">
+        <a class="nav-link " href="{{ url('/') }}">
+          <i class="fas fa-calendar-alt"></i>
+          <span>Reserva de turnos</span></a>
+      </li>
       @endauth
 
       
@@ -212,6 +230,33 @@
 		 $('table').on('draw.dt', function() {
 			$('[data-toggle="tooltip"]').tooltip();
 		})
+
+    function eliminar(arg){
+			var url=$(arg).data('url');
+			var msg=$(arg).data('title');
+			$.confirm({
+				title: 'Confirmar!',
+				content: msg,
+				theme: 'modern',
+				type:'blue',
+				icon:'far fa-sad-cry',
+				closeIcon:true,
+				buttons: {
+					confirmar: {
+						btnClass: 'btn-blue',
+						action: function(){
+							location.replace(url);
+						}
+					},
+					cancelar: {
+						action: function(){
+
+						}
+        			}
+				}
+			});
+		}
+
   </script>
   @stack('scriptsFooter')
 </body>

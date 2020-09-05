@@ -65,7 +65,7 @@ class UsersDataTable extends DataTable
                   ->width(60)
                   ->title('Acción')
                   ->addClass('text-center'),
-            Column::make('id'),
+            
             Column::make('nombre')->title('Nombres'),
             Column::make('apellido')->title('Apellidos'),
             Column::make('historia_clinica')->title('Historia clínica'),
