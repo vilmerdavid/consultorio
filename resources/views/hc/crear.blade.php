@@ -50,8 +50,17 @@
                     </select>
                 </div>
                 <div class="col">
-                    <label for="estado_civil">Estado civil</label>
-                    <input type="text" id="estado_civil" name="estado_civil" class="form-control" placeholder="" required>
+                   
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1_e">Estado civil</label>
+                        <select class="form-control" id="exampleFormControlSelect1_e" name="estado_civil">
+                          <option value="Soltero/a">Soltero/a</option>
+                          <option value="Casado/a">Casado/a</option>
+                          <option value="Divorciado/a">Divorciado/a</option>
+                          <option value="Vuido/a">Vuido/a</option>
+                        </select>
+                    </div>
+
                 </div>
                 <div class="col">
                     <label for="fecha_nacimiento">Fecha nacimiento</label>

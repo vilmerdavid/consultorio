@@ -4,6 +4,6 @@
         <i class="fas fa-paste"></i>
     </a>
     <a href="{{ route('detalleHc',$hc->id) }}" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Detalle">
-        <i class="fas fa-question"></i>
+        <i class="fas fa-address-card"></i>
     </a>
 </div>

@@ -51,8 +51,16 @@
                     </select>
                 </div>
                 <div class="col">
-                    <label for="estado_civil">Estado civil</label>
-                    <input type="text" id="estado_civil" name="estado_civil" value="{{ $hc->user_m->estado_civil??'' }}" class="form-control" placeholder="" required>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1_e">Estado civil</label>
+                        <select class="form-control" id="exampleFormControlSelect1_e" name="estado_civil">
+                          <option value="Soltero/a" {{ $hc->user_m->estado_civil=='Soltero/a'?'selected':'' }}>Soltero/a</option>
+                          <option value="Casado/a" {{ $hc->user_m->estado_civil=='Casado/a'?'selected':'' }}>Casado/a</option>
+                          <option value="Divorciado/a" {{ $hc->user_m->estado_civil=='Divorciado/a'?'selected':'' }}>Divorciado/a</option>
+                          <option value="Vuido/a" {{ $hc->user_m->estado_civil=='Vuido/a'?'selected':'' }}>Vuido/a</option>
+                        </select>
+                    </div>
+
                 </div>
                 <div class="col">
                     <label for="fecha_nacimiento">Fecha nacimiento</label>
