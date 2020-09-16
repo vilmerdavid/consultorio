@@ -120,7 +120,7 @@
                     
                     @if ($enfermedad)
                     <hr>
-                    <strong>Posible enfermedad: </strong> {{ $enfermedad??'' }}    
+                    <strong>Diagnóstico: </strong> {{ $enfermedad??'' }}    
                     @endif
                     
                 </td>
@@ -190,5 +190,52 @@
             </tr>
         </tfoot>
     </table>
+
+    <div class="page-break"></div>
+    <i style="float: right;">Latacunga: {{ $hc->created_at }}</i>
+<br>
+<br>
+<br>
+    <h1 style="text-align: center">CERTIFICADO</h1>
+    <p style="text-align: center;">
+        Por medio de la presente; <strong>CERTIFICO</strong> haber atendido al paciente:
+    </p>
+    <p style="text-align: center;">
+        @if ($hc->user_m->sexo=='MUJER')
+        Sra.
+        @else
+        Sr.
+        @endif
+
+        {{ $hc->user_m->apellido }} {{ $hc->user_m->nombre }}
+    </p>
+
+    
+    <p>
+        Con cédula de identidad : {{ $hc->user_m->cedula }}
+    </p>
+    
+        @if ($enfermedad)
+        <p>
+            Cuyo diagnóstico es:  {{ $enfermedad??'' }}    
+        </p>
+        @endif
+    <p>
+        Debiendo guardar reposo:
+    </p>
+    <p>
+        Desde: __/__/{{ date('Y') }}
+    </p>
+
+    <p>
+        Hasta: __/__/{{ date('Y') }}
+    </p>
+    <br>
+    <p style="text-align: center;">
+        Atentamente:
+    </p>
+
+
+    
 </body>
 </html>

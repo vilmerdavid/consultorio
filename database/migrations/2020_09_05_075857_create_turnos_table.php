@@ -21,7 +21,7 @@ class CreateTurnosTable extends Migration
             $table->string('email');
             $table->string('telefono');
             $table->text('comentario');
-            $table->string('hora');
+            $table->time('hora');
             $table->date('fecha');
             $table->string('estado');
         });

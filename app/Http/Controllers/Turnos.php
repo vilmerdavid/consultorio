@@ -49,4 +49,10 @@ class Turnos extends Controller
         $request->session()->flash('success','Estado de turno cambiado');
         return redirect()->route('turnos');
     }
+
+    public function consultarTurnoDisponible(Request $request)
+    {
+        $turnos=Turno::where('fecha',$request->fecha)->select('hora')->get();
+        return $turnos;
+    }
 }

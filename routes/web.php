@@ -16,6 +16,7 @@ Route::get('/', function () {
     return view('/welcome');
 });
 Route::post('/guardar-turnos', 'Turnos@guardarTurno')->name('guardarTurno');
+Route::post('/consultar-turno-disponible', 'Turnos@consultarTurnoDisponible')->name('consultarTurnoDisponible');
 
 Auth::routes(['register'=>false]);
 
@@ -50,6 +51,8 @@ Route::middleware(['auth'])->group(function () {
     // turnos
     Route::get('/turnos', 'Turnos@index')->name('turnos');
     Route::get('/cambiar-estado-turno/{id}', 'Turnos@estado')->name('cambiarturnos');
+
+    
 
 });
 

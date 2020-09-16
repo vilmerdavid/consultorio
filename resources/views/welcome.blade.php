@@ -100,7 +100,7 @@
                     <label for="hora" class="col-md-4 col-form-label text-md-right">{{ __('Hora') }}</label>
 
                     <div class="col-md-6">
-                        <input type="text" name="hora" id="hora" class="form-control @error('hora') is-invalid @enderror" required autocomplete="hora" value="{{ old('hora') }}">
+                        <input type="time" min="09:00" max="18:00"   name="hora" id="hora" class="form-control @error('hora') is-invalid @enderror" required autocomplete="hora" value="{{ old('hora') }}">
                         
                         @error('hora')
                             <span class="invalid-feedback" role="alert">
@@ -132,6 +132,21 @@
     <link rel="stylesheet" href="{{ asset('librarys/jquery-timepicker/jquery.timepicker.min.css') }}">
     <script src="{{ asset('librarys/jquery-timepicker/jquery.timepicker.min.js') }}"></script>
 
+    {{-- times --}}
+    <script src="{{ asset('librarys/pickadate.js/lib/picker.js') }}"></script>
+    <script src="{{ asset('librarys/pickadate.js/lib/picker.time.js') }}"></script>
+    <script src="{{ asset('librarys/pickadate.js/lib/legacy.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('librarys/pickadate.js/lib/themes/classic.css') }}">
+    <link rel="stylesheet" href="{{ asset('librarys/pickadate.js/lib/themes/classic.time.css') }}">
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+
 @endprepend
 
 @push('scriptsFooter')
@@ -145,23 +160,56 @@
           locale:'es'
         });
 
+        
 
+        var tiempos=[
+                [13,00],
+                [13,30],
+                [14,00],
+                [14,30]
+            ];
+        
         calendar.render();
 
         calendar.on('dateClick', function(info) {
-            console.log('clicked on ' + info.dateStr);
-            $('#fecha').val(info.dateStr)
-            $('#modalTurno').modal('show')
+
+           
+            
+            var fecha=$('#fecha').val(info.dateStr);
+            var hora=$('#hora').val();
+            
+            $.post( "{{ route('consultarTurnoDisponible') }}", { fecha: info.dateStr, hora: hora })
+                .done(function( data ) {
+                    $.each(data, function(k, v) {
+                       res = v.hora.split(":");
+                       tiempos.push([parseInt(res[0]),parseInt(res[1])])
+                    });
+                    
+                    
+                }).always(function() {
+                    ok()
+                });
+
+            $('#modalTurno').modal('show');
+           
+            
+
         });
 
-        $('#hora').timepicker({
-            'minTime': '9:00am',
-            'maxTime': '6:00pm',
-            'disableTimeRanges': [
-                ['1pm', '3pm'],
-            ]
-            
-        });
+
+        function ok(){
+            $('#hora').pickatime({
+                min: [9,00],
+                max: [18,0],
+                format: 'HH:i',
+                disable: 
+                    tiempos
+            });
+        }
+        
+        $('#modalTurno').on('hidden.bs.modal', function (e) {
+            location.reload()
+        })
 
     </script>
 @endpush

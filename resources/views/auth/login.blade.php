@@ -5,7 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <img class="card-img-top" src="https://img.freepik.com/foto-gratis/autenticacion-pie-medico-elegantes-iconos_1134-904.jpg?size=626&ext=jpg&ga=GA1.2.557367664.1600273023" alt="Card image cap">
+                {{ __('Login') }}
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">

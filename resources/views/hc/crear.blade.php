@@ -98,16 +98,16 @@
                     <input type="text" name="peso" id="peso" class="form-control" placeholder="">
                 </div>
                 <div class="talla">
-                    <label for="talla">Talla Cm<sup>2</sup></label>
+                    <label for="talla">Talla cm<sup>2</sup></label>
                     <input type="text" name="talla" id="talla" class="form-control" placeholder="">
                 </div>
                 <div class="col">
-                    <label for="tem">Temperatura °C</label>
+                    <label for="tem">Temperatura °c</label>
                     <input type="text" name="temperatura" id="tem" class="form-control" placeholder="">
                 </div>
 
                 <div class="col">
-                    <label for="pc">Pulso X<sup>*</sup> </label>
+                    <label for="pc">Pulso x<sup>*</sup> </label>
                     <input type="text" id="pc" name="presion_cardiaca" class="form-control" placeholder="">
                 </div>
 
