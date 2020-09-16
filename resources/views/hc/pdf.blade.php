@@ -201,7 +201,7 @@
         Por medio de la presente; <strong>CERTIFICO</strong> haber atendido al paciente:
     </p>
     <p style="text-align: center;">
-        @if ($hc->user_m->sexo=='MUJER')
+        @if ($hc->user_m->sexo=='M')
         Sra.
         @else
         Sr.
