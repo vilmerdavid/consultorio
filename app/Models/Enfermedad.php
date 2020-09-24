@@ -21,4 +21,9 @@ class Enfermedad extends Model
         }
         return false;
     }
+
+    public function historiasClinicas_m()
+    {
+        return $this->hasMany(Historiaclinica::class);
+    }
 }

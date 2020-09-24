@@ -255,14 +255,19 @@
             }
         });
 
+
+        var idEnfermedad={{ $hc->enfermedad_id }}
+        console.log(idEnfermedad)
         
         $.post( "{{ route('calcularEnfermedad') }}", { ids_sintomas: ids })
         .done(function( data ) {
             $.each(data, function(k, v) {
                 
-                item+='<tr>'+
+                if(idEnfermedad==v.id){
+                    item+='<tr>'+
                         '<td>'+
                             '<div class="form-check">'+
+                                '<input type="radio" class="form-check-input" checked name="enfermedad" value="'+v.id+'" id="enfermead_'+v.id+'">'+
                                 '<label class="form-check-label" for="enfermead_'+v.id+'">'+v.enfermedad+'</label>'+
                             '</div>'+          
                         '</td>'+
@@ -270,6 +275,20 @@
                             v.cantidad
                         '</td>'+
                     '</tr>';
+                }else{
+                    item+='<tr>'+
+                        '<td>'+
+                            '<div class="form-check">'+
+                                '<input type="radio" class="form-check-input" name="enfermedad" value="'+v.id+'" id="enfermead_'+v.id+'">'+
+                                '<label class="form-check-label" for="enfermead_'+v.id+'">'+v.enfermedad+'</label>'+
+                            '</div>'+          
+                        '</td>'+
+                        '<td>'+
+                            v.cantidad
+                        '</td>'+
+                    '</tr>';
+                }
+                
             });
 
             $('#posible_enfermedad_table').append(item)   

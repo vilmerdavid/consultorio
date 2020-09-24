@@ -18,4 +18,9 @@ class Historiaclinica extends Model
 
     }
 
+    public function enfermedad_m()
+    {
+        return $this->belongsTo(Enfermedad::class, 'enfermedad_id');
+    }
+
 }

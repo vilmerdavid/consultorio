@@ -75,6 +75,7 @@ class HistoriaClinicas extends Controller
             $hc->temperatura=$request->temperatura;
             $hc->peso=$request->peso;
             $hc->talla=$request->talla;
+            $hc->enfermedad_id=$request->enfermedad;
             $hc->save();
     
             if($request->sintomas){
@@ -87,6 +88,7 @@ class HistoriaClinicas extends Controller
             }
             
             DB::commit();
+
             
             $request->session()->flash('success','Hc, guardado');
             return redirect()->route('hc');
@@ -155,6 +157,7 @@ class HistoriaClinicas extends Controller
             $hc->temperatura=$request->temperatura;
             $hc->peso=$request->peso;
             $hc->talla=$request->talla;
+            $hc->enfermedad_id=$request->enfermedad;
             $hc->save();
     
             $hc->diagnosticos_m()->sync($request->sintomas);
@@ -185,21 +188,19 @@ class HistoriaClinicas extends Controller
 
     public function hcPdf($idHc)
     {
-        $hc=Historiaclinica::find($idHc);
+        $hc=Historiaclinica::find($idHc);        
 
+        // $ids_sintomas = $hc->diagnosticos_m->pluck('pivot.sintoma_id');
+        // $sintomas=Enfermedadsintoma::whereIn('sintoma_id',$ids_sintomas)->select('enfermedad_id', DB::raw('count(*) as total'))
+        // ->groupBy('enfermedad_id')
+        // ->first();
         
+        // $e='';
+        // if($sintomas){
+        //     $e=Enfermedad::find($sintomas->enfermedad_id)->nombre;
+        // }
 
-        $ids_sintomas = $hc->diagnosticos_m->pluck('pivot.sintoma_id');
-        $sintomas=Enfermedadsintoma::whereIn('sintoma_id',$ids_sintomas)->select('enfermedad_id', DB::raw('count(*) as total'))
-        ->groupBy('enfermedad_id')
-        ->first();
-        
-        $e='';
-        if($sintomas){
-            $e=Enfermedad::find($sintomas->enfermedad_id)->nombre;
-        }
-
-        $data = array('hc' => $hc,'enfermedad'=>$e );
+        $data = array('hc' => $hc,'enfermedad'=>$hc->enfermedad_m->nombre??'' );
         $pdf = PDF::loadView('hc.pdf', $data)
         ->setOption('header-html', view('hc.header'))
         ->setOption('footer-html', view('hc.footer'))

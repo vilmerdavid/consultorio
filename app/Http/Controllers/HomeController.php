@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Diagnostico;
+use App\Models\Enfermedad;
 use App\Models\Historiaclinica;
 use App\Models\Sintoma;
 use App\Models\Turno;
@@ -38,7 +39,13 @@ class HomeController extends Controller
             array_push($sintomas,['sintoma'=>$si->nombre,'total'=>$dg->total]);
         }
 
-        $data = array('sintomas' => $sintomas,'users' => User::count(),'hcs'=>Historiaclinica::count(),'turnos'=>Turno::count());
+        $data = array(
+            'sintomas' => $sintomas,
+            'users' => User::count(),
+            'hcs'=>Historiaclinica::count(),
+            'turnos'=>Turno::count(),
+            'enfermedades'=>Enfermedad::all()
+        );
         
         return view('home',$data);
 

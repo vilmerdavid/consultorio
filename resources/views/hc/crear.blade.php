@@ -236,7 +236,7 @@
                 item+='<tr>'+
                         '<td>'+
                             '<div class="form-check">'+
-                                '<input type="checkbox" class="form-check-input" name="enfermedades[]" value="'+v.id+'" id="enfermead_'+v.id+'">'+
+                                '<input type="radio" class="form-check-input" name="enfermedad" value="'+v.id+'" id="enfermead_'+v.id+'">'+
                                 '<label class="form-check-label" for="enfermead_'+v.id+'">'+v.enfermedad+'</label>'+
                             '</div>'+          
                         '</td>'+

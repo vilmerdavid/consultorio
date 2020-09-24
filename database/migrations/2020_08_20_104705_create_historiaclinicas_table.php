@@ -19,6 +19,12 @@ class CreateHistoriaclinicasTable extends Migration
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+
+
+            $table->unsignedBigInteger('enfermedad_id')->nullable();
+            $table->foreign('enfermedad_id')->references('id')->on('enfermedads');
+
+
             
             $table->text('motivo')->nullable();
             $table->text('antecedentes_personales')->nullable();
