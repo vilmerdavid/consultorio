@@ -21,7 +21,9 @@ class HistoriaClinicas extends Controller
 
     public function crear()
     {
-        $data = array('sintomas' => Sintoma::all(),'hc'=>Historiaclinica::get()->last()->id??0+1 );
+        $numero=Historiaclinica::get()->last()->id??0;
+        $i=$numero+1;
+        $data = array('sintomas' => Sintoma::all(),'hc'=> $i);
         return view('hc.crear',$data);
     }
     public function calcularEnfermedad(Request $request)
