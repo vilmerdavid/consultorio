@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
         $user->assignRole($role);
 
         // aqui los nombres de las enfermedades
-        $enfermdades = array('Amigdalitis','Bronquitis','Neumonia','Rinifaringitis','Otros');
+        $enfermdades = array('Amigdalitis','Bronquitis','Neumonia','Rinofaringitis','Otros');
         foreach ($enfermdades as $enf) {
             $e=Enfermedad::where('nombre',$enf)->first();
             if(!$e){

@@ -59,11 +59,7 @@
         Navegación
       </div>
       @auth
-      <li class="nav-item" id="mene_inicio">
-        <a class="nav-link " href="{{ route('home') }}">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Inicio</span></a>
-      </li>
+      
       @include('layouts.menu')
       @else
       
